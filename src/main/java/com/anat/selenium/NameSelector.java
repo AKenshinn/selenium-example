@@ -9,9 +9,9 @@ public class NameSelector {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		// if using Google Chrome browser
-		// System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver");
-		// WebDriver driver = new ChromeDriver();
+		// if using Google Chrome or Internet Explorer browser
+		// System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver"); //path to chrome or internet Explorer driver
+		// WebDriver driver = new ChromeDriver(); // or new InternetExplorerDriver();
 		
 		WebDriver driver = new SafariDriver(); // using Safari browser
 		driver.navigate().to("http://testing.todorvachev.com/selectors/name/"); // url to web page 
@@ -21,7 +21,7 @@ public class NameSelector {
 		if (element.isDisplayed()) { 
 			System.out.println("Found element...");
 			element.click();
-			element.sendKeys("proton");
+			element.sendKeys("This is text field");
 		} else {
 			System.err.println("Not found element...");
 		}
