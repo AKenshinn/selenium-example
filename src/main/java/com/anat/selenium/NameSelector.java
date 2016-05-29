@@ -1,20 +1,34 @@
 package com.anat.selenium;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Predicate;
 
 public class NameSelector {
 
 	public static void main(String[] args) throws InterruptedException {
 		
 		// if using Google Chrome or Internet Explorer browser
-		// System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver"); //path to chrome or internet Explorer driver
-		// WebDriver driver = new ChromeDriver(); // or new InternetExplorerDriver();
+		System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver"); //path to chrome or internet Explorer driver
+		WebDriver driver = new ChromeDriver(); // or new InternetExplorerDriver();
 		
-		WebDriver driver = new SafariDriver(); // using Safari browser
-		driver.navigate().to("http://testing.todorvachev.com/selectors/name/"); // url to web page 
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // set timeout for load page
+		driver.navigate().to("http://testing.todorvachev.com/selectors/name"); // url to web page
+		
+		// wait for load javascript
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until( new Predicate<WebDriver>() {
+			public boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+            }
+		});
 		
 		WebElement element = driver.findElement(By.name("myName")); // find element by name
 		// check found or not found element
@@ -27,6 +41,8 @@ public class NameSelector {
 		}
 		
 		
+		Thread.sleep(3000); // delay 3 seconds
+		driver.get("https://www.google.co.th");
 		Thread.sleep(3000); // delay 3 seconds
 		driver.quit(); // quit browser
 		
