@@ -44,7 +44,7 @@ public class FormExample {
 		// text box
 		WebElement textbox = driver.findElement(By.name("vfb-9"));
 		if (textbox.isEnabled()) {
-			System.out.println("textarea : Found textarea");
+			System.out.println("textbox : Found textbox");
 			textbox.click();
 			textbox.clear();
 			textbox.sendKeys("This is textbox from selenium");
@@ -71,6 +71,12 @@ public class FormExample {
 			
 			System.out.println("Radio : " + element.getAttribute("value"));
 		}
+		
+		// datepicker
+		WebElement datepicker = driver.findElement(By.name("vfb-8"));
+		datepicker.sendKeys("07/23/1992"); // send date to textbox
+		driver.findElement(By.linkText("23")).click(); // click day for hide datepicker
+		System.out.println("DatePicker : " + datepicker.getAttribute("value"));
 		
 		// select (dropdown)
 		WebElement select = driver.findElement(By.id("vfb-12"));
