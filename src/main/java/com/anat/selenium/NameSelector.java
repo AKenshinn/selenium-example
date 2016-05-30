@@ -19,6 +19,12 @@ public class NameSelector {
 		System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver"); //path to chrome or internet Explorer driver
 		WebDriver driver = new ChromeDriver(); // or new InternetExplorerDriver();
 		
+		// focus window
+		((JavascriptExecutor) driver).executeScript("alert('Focus window')");
+		driver.switchTo().alert().accept();
+		
+		driver.manage().window().maximize(); // use maximum window size
+		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // set timeout for load page
 		driver.navigate().to("http://testing.todorvachev.com/selectors/name"); // url to web page
 		
@@ -40,9 +46,6 @@ public class NameSelector {
 			System.err.println("Not found element...");
 		}
 		
-		
-		Thread.sleep(3000); // delay 3 seconds
-		driver.get("https://www.google.co.th");
 		Thread.sleep(3000); // delay 3 seconds
 		driver.quit(); // quit browser
 		
