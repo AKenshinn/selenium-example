@@ -16,7 +16,7 @@ public class FormExample {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		System.setProperty("webdriver.chrome.driver", "/Users/Kenshinn/bin/chromedriver"); //path to chrome or internet Explorer driver
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/driver/chromedriver"); //path to chrome or internet Explorer driver
 		WebDriver driver = new ChromeDriver();
 		
 		// focus window
